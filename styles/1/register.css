@@ -1,0 +1,39 @@
+.register{
+	width: auto;
+	height: 600px;
+	border: 2px solid #ccc;
+}
+.register h2{
+	text-indent: 0;
+	text-align: center;
+}
+.register ul{
+	width:250px;
+	margin: 0 auto;
+}
+.register ul li{
+	list-style: none;
+	margin: 10px 0;
+}
+.imgstyle{
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	margin: 0 0 0 100px;
+	border: 2px solid #ff6700;
+	border-radius: 100%;
+}
+.register ul li input[type="text"],.register ul li input[type="password"]{
+	float: right;
+}
+.sex{width:173px;float:right}
+.code{cursor: pointer;float: right;}
+.register ul li input[type="submit"]{
+	width: 60px;
+	height: 25px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+}
