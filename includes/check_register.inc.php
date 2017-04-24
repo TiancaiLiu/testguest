@@ -136,18 +136,12 @@ function _check_face($string) {
  * @return string $string 返回邮箱
  */
 function _check_email($string,$min_num,$max_num) {
-
-	if(!empty($string)) {
-		if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)) {
-			_alert_back('邮箱格式不正确！');
-		}		
-	}else {
-		if(mb_strlen($string) < $min_num || mb_strlen($string) > $max_num) {
-			_alert_back('邮箱长度不得不合法！');
-		}
-		return null;
-	}
-	
+	if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $string)) {
+		_alert_back('邮箱格式不正确！');
+	}		
+	if(mb_strlen($string) < $min_num || mb_strlen($string) > $max_num) {
+		_alert_back('邮箱长度不得不合法！');
+	}			
 	return  _mysql_string($string);
 }
 

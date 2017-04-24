@@ -6,7 +6,12 @@ function _alert_back($info) {
 };
 //跳转
 function _location($info, $url){
-	echo "<script type='text/javascript'>alert('$info');location.href='$url';</script>";
+	if(!empty($info)){
+		echo "<script type='text/javascript'>alert('$info');location.href='$url';</script>";
+		exit();
+	}else {
+		header('Location:'.$url);
+	}
 };
 //验证码
 function _check_vcode($first_vcode,$end_vcode) {
