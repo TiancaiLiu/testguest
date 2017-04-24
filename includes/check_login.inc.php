@@ -9,7 +9,27 @@ if(!function_exists('_alert_back')) {
 if(!function_exists('_mysql_string')) {
 	exit('_mysql_string()函数不存在,请检查!');
 }
-
+//设置cookie
+function _setcookie($username,$uniqid,$time) {
+	switch ($time) {
+		case '0':
+			setcookie('username', $username);
+			setcookie('uniqid', $uniqid);
+			break;
+		case '1':
+			setcookie('username', $username, time()+86400);
+			setcookie('uniqid', $uniqid, time()+86400);
+			break;
+		case '1':
+			setcookie('username', $username, time()+604800);
+			setcookie('uniqid', $uniqid, time()+604800);
+			break;
+		case '1':
+			setcookie('username', $username, time()+2592000);
+			setcookie('uniqid', $uniqid, time()+2592000);
+			break;
+	}
+}
 /**
  * _check_username表示检测并过滤用户名
  * @access public

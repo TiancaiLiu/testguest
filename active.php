@@ -15,7 +15,7 @@ if(isset($_GET['action']) && isset($_GET['active']) && $_GET['action'] == 'ok') 
 	$query = "SELECT * FROM `tg_user` WHERE tg_active='$active' LIMIT 1";
 	$result = execute($link, $query);
 	if(mysqli_num_rows($result)) {
-		$query = "UPDATE `tg_user` SET tg_active=NULL WHERE tg_active='$active' LIMIT 1";
+		$query = "UPDATE `tg_user` SET tg_active='' WHERE tg_active='$active' LIMIT 1";
 		$result = execute($link,$query);
 		if(mysqli_affected_rows($link) == 1){
 			_location('账户激活成功','login.php');

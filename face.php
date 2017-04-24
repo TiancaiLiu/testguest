@@ -20,7 +20,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
 			<?php } ?>
 		</dl>
 		<dl>
-			<?php foreach(range(10, 15) as $num) { ?>
+			<?php foreach(range(10, 21) as $num) { ?>
 			<dd><img src="face/face<?php echo $num?>.jpg" alt="face/face<?php echo $num?>.jpg" title="头像<?php echo $num?>"></dd>
 			<?php } ?>
 		</dl>

@@ -13,6 +13,12 @@ function _location($info, $url){
 		header('Location:'.$url);
 	}
 };
+//登录状态的判断
+function _login_state() {
+	if(isset($_COOKIE['username'])) {
+		_alert_back('您已经登录，请不要重复登录或注册！');
+	}
+}
 //验证码
 function _check_vcode($first_vcode,$end_vcode) {
 	if($first_vcode != $end_vcode) {

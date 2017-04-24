@@ -67,3 +67,33 @@ h2{
 .footer p span{
 	color: #06f;
 }
+.page{
+	clear: both;
+	height: 20px;
+	padding: 10px 0;
+	position: relative;
+}
+.page ul{
+	position: absolute;
+	right: 30px;
+	height: 20px;
+}
+.page ul li{
+	float: left;
+	width: 25px;
+	height: 20px;
+}
+.page ul li a{
+	width: 20px;
+	height: 20px;
+	display: block;
+	border: 1px solid #333;
+	text-align: center;
+	text-decoration: none;
+	color: #666;
+}
+.page ul li a:hover,.page ul li a.selected{
+	background: #666;
+	font-weight: bold;
+	color: #fff
+}

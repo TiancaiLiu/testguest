@@ -4,17 +4,21 @@ define("IN_TG", true);
 define("SCRIPT","login");//定义常量表示本页内容
 require dirname(__FILE__).'/includes/common.inc.php';
 $link = connect();
+_login_state();//登录状态
 if(isset($_POST['submit'])) {
 	include_once ROOT_PATH.'includes/check_login.inc.php'; //引入验证函数库
-	//_check_vcode($_POST['vcode'],$_SESSION['vcode']);//判断验证码
+	_check_vcode($_POST['vcode'],$_SESSION['vcode']);//判断验证码
 	$clean = array();
 	$clean['username'] = _check_username($_POST['username'],2,20);
 	$clean['password'] = _check_password($_POST['password'],6);
 	$clean['time'] = _check_time($_POST['time']);
 	//var_dump($clean);
-	$query = "SELECT * FROM `tg_user` WHERE tg_username='{$clean['username']}' AND tg_password='{$clean['password']}' AND tg_active is null LIMIT 1";
+	$query = "SELECT * FROM `tg_user` WHERE tg_username='{$clean['username']}' AND tg_password='{$clean['password']}' AND tg_active='' LIMIT 1";
 	$result = execute($link, $query);
-	if(mysqli_num_rows($result)==1) {		
+	if(mysqli_num_rows($result)==1) {
+		$data = mysqli_fetch_assoc($result);
+		//var_dump($data);
+		_setcookie($data['tg_username'],$data['tg_uniqid'],$clean['time']);
 		close($link);
 		session_destroy();
 		_location(null,'index.php');
@@ -23,8 +27,8 @@ if(isset($_POST['submit'])) {
 		session_destroy();
 		_location('用户名密码不正确或改账户未激活','login.php');
 	}
-	$data = mysqli_fetch_assoc($result);
-	//var_dump($data);
+	
+	
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

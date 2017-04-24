@@ -4,6 +4,7 @@ define("IN_TG", true);
 define("SCRIPT","register");//定义常量表示本页内容
 require dirname(__FILE__).'/includes/common.inc.php';
 $link = connect();
+_login_state();//登录状态
 if(isset($_POST['submit'])) {
 	include_once ROOT_PATH.'includes/check_register.inc.php'; //引入验证函数库
 	_check_vcode($_POST['vcode'],$_SESSION['vcode']);//判断验证码
