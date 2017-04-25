@@ -70,7 +70,7 @@ h2{
 .page{
 	clear: both;
 	height: 20px;
-	padding: 10px 0;
+	padding: 20px 0;
 	position: relative;
 }
 .page ul{
@@ -96,4 +96,23 @@ h2{
 	background: #666;
 	font-weight: bold;
 	color: #fff
+}
+.page_text{
+	height: 20px;
+	clear: both;
+	padding: 20px 0;
+}
+.page_text ul {
+	text-align: center;
+}
+.page_text ul li{
+	display: inline;
+}
+.page_text ul li a{
+	color: #333;
+	text-decoration: none;
+}
+.page_text ul li a:hover{
+	color: red;
+	text-decoration: underline;
 }

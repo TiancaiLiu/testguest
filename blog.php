@@ -4,28 +4,7 @@ require dirname(__FILE__).'/includes/common.inc.php'; //转换成硬路径，速
 define("SCRIPT","blog"); //定义常量表示本页内容
 $link = connect();
 //分页显示
-if(isset($_GET['page'])) {
-	$page = $_GET['page'];
-	if(empty($page) || $page < 0 || !is_numeric($page)) {
-		$page = 1;
-	}else{
-		$page = intval($page);
-	}
-}else{
-	$page = 1;
-}
-$pagesize = 5;
-$query = "SELECT COUNT(*) FROM `tg_user`";
-$num = num($link, $query);
-if($num == 0){
-	$pageabsolute = 1;
-}else{
-	$pageabsolute  = ceil($num / $pagesize);//计算分页数
-}
-if($page > $pageabsolute) {
-	$page = $pageabsolute;
-}
-$pagenum = ($page-1) * $pagesize; //每页从第几条开始
+_paging("SELECT COUNT(*) FROM `tg_user`",5);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,20 +31,10 @@ $pagenum = ($page-1) * $pagesize; //每页从第几条开始
 			<dd class="guset">写留言</dd>
 			<dd class="flower">送　花</dd>
 		</dl>
-		<?php } ?>
-		<div class="page">
-			<ul>
-				<?php  
-					for($i=0;$i<$pageabsolute;$i++) {
-						if($page == ($i+1)){
-							echo '<li><a href="blog.php?page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
-						}else{
-							echo '<li><a href="blog.php?page='.($i+1).'">'.($i+1).'</a></li>';
-						}
-					}
-				?>
-			</ul>
-		</div>
+		<?php 
+		}
+		_page(2); 
+		?>		
 	</div>
 	<?php require ROOT_PATH.'includes/footer.inc.php' ?>
 </body>
