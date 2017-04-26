@@ -1,0 +1,83 @@
+.member{
+	width: auto;
+	height: 600px;
+	border: 2px solid #ccc;
+	font-size: 12px
+}
+.member h2{
+	text-indent: 0;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 10px 10px 0 0;
+}
+.member .member_sidebar{
+	width: 300px;
+	height: 500px;
+	margin: 14px;
+	border: 2px solid #f60;
+	border-radius: 10px;
+	float: left;
+}
+.member .member_main{
+	width: 590px;
+	height: 500px;
+	margin: 15px;
+	border: 2px solid #f60;
+	border-radius: 10px;
+	float: right
+}
+.member .member_main dl{
+	width: 550px;
+	margin: 15px auto;
+	font-size: 14px;
+}
+.member .member_main dl dd{
+	padding: 12px 0;
+	border-bottom: 1px dashed #ff9d6f;
+}
+.member .member_sidebar dl{
+	width: 250px;
+	margin: 15px auto;
+}
+.member .member_sidebar dl dt{
+	height: 40px;
+	line-height: 40px;
+	background: #999;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+}
+.member .member_sidebar dl dd{
+	height: 40px;
+	line-height: 40px;
+	background: #eee;
+	font-weight: bold;
+	text-align: center;
+	margin: 3px 0 3px 0;
+}
+.member .member_sidebar dl dd a{
+	display: block;
+	color: #333;
+	text-decoration: none;
+}
+.member .member_sidebar dl dd a:hover{
+	border: 1px solid #f60;
+}
+.member_main dl dd input[type="submit"]{
+	width: 60px;
+	height: 25px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+}
+.imgstyle{
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+.selected{
+	border: 1px solid #f60;
+}

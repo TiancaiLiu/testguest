@@ -71,6 +71,17 @@ function _check_password($first_pass, $end_pass, $min_num) {
 	return  _mysql_string(sha1(md5($first_pass)));
 }
 
+function _check_modify_password($string, $min_num) {
+	if(!empty($string)) {
+		if(strlen($string) < $min_num) {
+			_alert_back('密码不得少于'.$min_num.'位');
+		}
+	}else{
+		return null;
+	}
+	return _mysql_string(sha1(md5($string)));
+}
+
 /**
  * _check_question 验证密码提示
  * @access public

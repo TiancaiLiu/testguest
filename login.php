@@ -17,11 +17,13 @@ if(isset($_POST['submit'])) {
 	$result = execute($link, $query);
 	if(mysqli_num_rows($result)==1) {
 		$data = mysqli_fetch_assoc($result);
+		$sql = "UPDATE `tg_user` SET tg_last_time=now(),tg_last_ip='{$_SERVER['REMOTE_ADDR']}',tg_login_count=tg_login_count+1 WHERE tg_username='{$data['tg_username']}'";
+		execute($link,$sql);
 		//var_dump($data);
 		_setcookie($data['tg_username'],$data['tg_uniqid'],$clean['time']);
 		close($link);
 		session_destroy();
-		_location(null,'index.php');
+		_location(null,'member.php');
 	}else{
 		close($link);
 		session_destroy();

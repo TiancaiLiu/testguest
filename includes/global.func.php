@@ -103,4 +103,15 @@ function _page($type) {
 		echo '</div>';
 	}
 }
+//字符串过滤(用到递归调用)
+function _html($string) {
+	if(is_array($string)) {
+		foreach ($string as $key => $value) {
+			$string[$key] = _html($value);
+		}
+	}else{
+		$string = htmlspecialchars($string);
+	}
+	return $string;
+}
 ?>
