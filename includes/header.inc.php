@@ -1,6 +1,15 @@
-<?php  
+<?php 
 if(!defined("IN_TG")) {
 	exit('Access Defined!');
+}
+//短信提醒
+$query = "SELECT COUNT(*) AS count FROM `tg_message` WHERE tg_state=0 AND tg_touser = '{$_COOKIE['username']}'";
+$result = execute($link, $query);
+$data=mysqli_fetch_assoc($result);
+if(empty($data['count'])){
+	$GLOBALS['message'] = '<img src="images/nonews.png" /><a href="member_message.php">(0)</a>';
+}else{
+	$GLOBALS['message'] = '<img src="images/news.png" /><a href="member_message.php">('.$data['count'].')</a>';
 }
 ?>
 <div class="header">
@@ -9,7 +18,7 @@ if(!defined("IN_TG")) {
 		<li><a href="index.php">首页</a></li>
 		<?php  
 			if(isset($_COOKIE['username'])) {
-				echo '<li><a href="member.php">'.$_COOKIE['username'].'●个人中心</a></li> ';
+				echo '<li><a href="member.php">'.$_COOKIE['username'].'●个人中心'.$GLOBALS['message'].'</a></li> ';
 			}else{
 				echo '<li><a href="register.php">注册</a></li> ';
 				echo '<li><a href="login.php">登录</a></li> ';

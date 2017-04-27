@@ -34,6 +34,10 @@
 	float: none;
 	color: #f60;
 }
+.blog dl dd a{
+	text-decoration: none;
+	color: #000;
+}
 .blog dl dd.message{
 	background: url('../../images/logo1.png') no-repeat left 30%;
 }

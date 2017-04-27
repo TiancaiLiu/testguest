@@ -4,6 +4,12 @@ function _alert_back($info) {
 	echo "<script type='text/javascript'>alert('".$info."');history.back();</script>";
 	exit();
 };
+
+//弹出并关闭自己
+function _alert_close($info) {
+	echo "<script type='text/javascript'>alert('".$info."');window.close();</script>";
+	exit();
+}
 //跳转
 function _location($info, $url){
 	if(!empty($info)){
@@ -27,8 +33,14 @@ function _check_vcode($first_vcode,$end_vcode) {
 }
 //判断表单是否需要转义
 function _mysql_string($string) {
-	if(!GPC) {
-		return @mysqli_real_escape_string($string);
+	if(!GPC) {	
+		if(is_array($string)) {
+			foreach ($string as $key => $value) {
+				$string[$key] = _mysql_string($value);
+			}
+		}else{
+			$string = @mysqli_real_escape_string($string);
+		}
 	}
 	return $string;
 }
@@ -65,7 +77,7 @@ function _paging($sql, $size) {
 }
 
 //分页函数
-function _page($type) {
+function _page($type,$content='个会员') {
 	//这里如果不声明全局变量的话，该函数将无法获得$page,$pageabsolute,$num的值(可以用传递参数的办法，但是比较麻烦)
 	global $page,$pageabsolute,$num;
 	if($type == 1){
@@ -84,7 +96,7 @@ function _page($type) {
 		echo '<div class="page_text">';
 		echo '<ul>';
 		echo '<li>'.$page.'/'.$pageabsolute.' 页 |</li>';
-		echo '<li>共有<strong>'.$num.'</strong>个会员 |</li>';
+		echo '<li>共有<strong>'.$num.'</strong>'.$content.' |</li>';
 					if($page == 1){
 						echo '<li> 首页 |</li>';
 						echo '<li> 上一页 |</li>';
@@ -111,6 +123,13 @@ function _html($string) {
 		}
 	}else{
 		$string = htmlspecialchars($string);
+	}
+	return $string;
+}
+//省略显示
+function _title($string) {
+	if(mb_strlen($string,'utf-8') > 4){
+		$string = mb_substr($string, 0, 4, 'utf-8').'...';
 	}
 	return $string;
 }
