@@ -36,7 +36,10 @@
 }
 .blog dl dd a{
 	text-decoration: none;
-	color: #000;
+	color: #333;
+}
+.blog dl dd a:hover{
+	color: red;
 }
 .blog dl dd.message{
 	background: url('../../images/logo1.png') no-repeat left 30%;
@@ -45,8 +48,8 @@
 	background: url('../../images/logo2.png') no-repeat left 30%;
 }
 .blog dl dd.guset{
-	background: url('../../images/logo3.png') no-repeat left 30%;
+	background: url('../../images/logo4.png') no-repeat left 30%;
 }
 .blog dl dd.flower{
-	background: url('../../images/logo4.png') no-repeat left 30%;
+	background: url('../../images/logo3.png') no-repeat left 30%;
 }

@@ -133,4 +133,59 @@ function _title($string) {
 	}
 	return $string;
 }
+
+//设置xml
+function _set_xml($xmlfile, $clean) {
+	$fp = @fopen('new.xml', 'w');
+	if(!$fp) {
+		exit('系统错误，文件不存在！');
+	}
+	flock($fp, LOCK_EX);
+	$string = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "<vip>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<id>{$clean['id']}</id>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<username>{$clean['username']}</username>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<sex>{$clean['sex']}</sex>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<face>{$clean['face']}</face>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<email>{$clean['email']}</email>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "\t<url>{$clean['url']}</url>\r\n";
+	fwrite($fp, $string, strlen($string));
+	$string = "</vip>";
+	fwrite($fp, $string, strlen($string));
+	flock($fp,LOCK_UN);
+	fclose($fp);
+}
+//获取xml
+function _get_xml($xmlfile) {
+	$html = array();
+	if(file_exists($xmlfile)) {
+		$xml = file_get_contents($xmlfile);
+		preg_match_all('/<vip>(.*)<\/vip>/s', $xml, $dom);
+		//var_dump($dom);
+		foreach ($dom[1] as $value) {
+			preg_match_all('/<id>(.*)<\/id>/s', $value, $id);
+			preg_match_all('/<username>(.*)<\/username>/s', $value, $username);
+			preg_match_all('/<sex>(.*)<\/sex>/s', $value, $sex);
+			preg_match_all('/<face>(.*)<\/face>/s', $value, $face);
+			preg_match_all('/<email>(.*)<\/email>/s', $value, $email);
+			preg_match_all('/<url>(.*)<\/url>/s', $value, $url);
+			$html['id'] = $id[1][0];
+			$html['username'] = $username[1][0];
+			$html['sex'] = $sex[1][0];
+			$html['face'] = $face[1][0];
+			$html['email'] = $email[1][0];
+			$html['url'] = $url[1][0];
+		}
+	}else{
+		echo '文件不存在！';
+	}
+	return $html;
+}
 ?>

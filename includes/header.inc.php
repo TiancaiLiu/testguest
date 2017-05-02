@@ -2,14 +2,16 @@
 if(!defined("IN_TG")) {
 	exit('Access Defined!');
 }
-//短信提醒
-$query = "SELECT COUNT(*) AS count FROM `tg_message` WHERE tg_state=0 AND tg_touser = '{$_COOKIE['username']}'";
-$result = execute($link, $query);
-$data=mysqli_fetch_assoc($result);
-if(empty($data['count'])){
-	$GLOBALS['message'] = '<img src="images/nonews.png" /><a href="member_message.php">(0)</a>';
-}else{
-	$GLOBALS['message'] = '<img src="images/news.png" /><a href="member_message.php">('.$data['count'].')</a>';
+if(isset($_COOKIE['username'])){
+	//短信提醒
+	$query = "SELECT COUNT(*) AS count FROM `tg_message` WHERE tg_state=0 AND tg_touser = '{$_COOKIE['username']}'";
+	$result = execute($link, $query);
+	$data=mysqli_fetch_assoc($result);
+	if(empty($data['count'])){
+		$GLOBALS['message'] = '<img src="images/nonews.png" /><strong><a href="member_message.php">(0)</a></strong>';
+	}else{
+		$GLOBALS['message'] = '<img src="images/news.png" /><strong><a href="member_message.php">('.$data['count'].')</a></strong>';
+	}
 }
 ?>
 <div class="header">

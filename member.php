@@ -5,7 +5,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
 $link = connect();
 
 if(isset($_COOKIE['username'])) {
-	$query = "SELECT tg_username,tg_sex,tg_face,tg_email,tg_url,tg_qq,tg_reg_time,tg_level FROM `tg_user` WHERE tg_username='{$_COOKIE['username']}' LIMIT 1";
+	$query = "SELECT tg_username,tg_sex,tg_face,tg_email,tg_url,tg_qq,tg_reg_time,tg_level,flower FROM `tg_user` WHERE tg_username='{$_COOKIE['username']}' LIMIT 1";
 	$result = execute($link, $query);
 	if($data = mysqli_fetch_assoc($result)) {
 		$html = array();
@@ -16,6 +16,7 @@ if(isset($_COOKIE['username'])) {
 		$html['url'] = $data['tg_url'];
 		$html['qq'] = $data['tg_qq'];
 		$html['reg_time'] = $data['tg_reg_time'];
+		$html['flower'] = $data['flower'];
 		switch ($data['tg_level']) {
 			case '0':
 				$html['level'] = '普通会员';
@@ -59,6 +60,7 @@ if(isset($_COOKIE['username'])) {
 				<dd>Q　Q：<?php echo $html['qq']?></dd>
 				<dd>注册时间：<?php echo $html['reg_time']?></dd>
 				<dd>用户级别：<?php echo $html['level']?></dd>
+				<dd>收到的花朵：<img src="images/logo4.png">(<?php echo $html['flower'] ?>)</dd>
 			</dl>
 		</div>
 	</div>

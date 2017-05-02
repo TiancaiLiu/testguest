@@ -28,45 +28,18 @@ if(isset($_POST['submit'])) {
 	if(mysqli_num_rows($result)){
 		_alert_back('改用户名已被注册，请重新输入！');
 	}
-	$query = "INSERT INTO `tg_user`(
-								tg_uniqid,
-								tg_active,
-								tg_username,
-								tg_password,
-								tg_question,
-								tg_answer,
-								tg_sex,
-								tg_face,
-								tg_email,
-								tg_qq,
-								tg_url,
-								tg_reg_time,
-								tg_last_time,
-								tg_last_ip
-							) VALUES (
-								'{$clean['uniqid']}',
-								'{$clean['active']}',
-								'{$clean['username']}',
-								'{$clean['password']}',
-								'{$clean['question']}',
-								'{$clean['answer']}',
-								'{$clean['sex']}',
-								'{$clean['face']}',
-								'{$clean['email']}',
-								'{$clean['qq']}',
-								'{$clean['url']}',
-								now(),
-								now(),
-								'{$_SERVER['REMOTE_ADDR']}'	
-							)";
+	$query = "INSERT INTO `tg_user`(tg_uniqid,tg_active,tg_username,tg_password,tg_question,tg_answer,tg_sex,tg_face,tg_email,tg_qq,tg_url,tg_reg_time,tg_last_time,tg_last_ip) VALUES ('{$clean['uniqid']}','{$clean['active']}','{$clean['username']}','{$clean['password']}','{$clean['question']}','{$clean['answer']}','{$clean['sex']}','{$clean['face']}','{$clean['email']}','{$clean['qq']}','{$clean['url']}',now(),now(),'{$_SERVER['REMOTE_ADDR']}')";
 	execute($link,$query);
-	if(mysqli_affected_rows($link) == 1){
+	if(mysqli_affected_rows($link) == 1){		
+		$clean['id'] = mysqli_insert_id($link);//获取刚刚新增数据的id
+		close($link);
+		//生成xml，为了在首页的“新进会员”中显示最新注册的会员(该方法写在核心函数库中)
+		_set_xml('new.xml', $clean);	
 		_location('恭喜您，注册成功!','active.php?active='.$clean['active']);
 	}else{
+		close($link);
 		_location('很遗憾，注册失败！','register.php');
 	}
-	close($link);
-	
 }
 $_SESSION['uniqid'] = $uniqid = _sha1_uniqid();//这段代码不能放到前面
 

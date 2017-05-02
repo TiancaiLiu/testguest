@@ -14,6 +14,22 @@ _paging("SELECT COUNT(*) FROM `tg_user`",5);
 	<title>朋友</title>
 	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/blog.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		function addFlower(touserid){
+			//alert(touserid);
+			var url = "flower.php";
+			var data = {"touserid":touserid};
+			var success = function(response){
+				if(response.errno == 0){
+					alert("送花成功！");
+				}else{
+					alert("送花失败！");
+				}
+			};
+			$.post(url, data, success, "json");
+		}
+	</script>
 </head>
 <body>
 	<?php require ROOT_PATH.'includes/header.inc.php' ?>
@@ -33,10 +49,10 @@ _paging("SELECT COUNT(*) FROM `tg_user`",5);
 		<dl>
 			<dd class="user"><?php echo $html['username'] ?>[<?php echo $html['sex'] ?>]</dd>
 			<dt><img src="<?php echo $html['face'] ?>" alt="<?php echo $html['username'] ?>" /></dt>
-			<dd class="message"><a href="" name="message" title="<?php echo $html['id'] ?>">发消息</a></dd>
-			<dd class="friend">加好友</dd>
-			<dd class="guset">写留言</dd>
-			<dd class="flower">送　花</dd>
+			<dd class="message"><a href="javascript:;" name="message" title="<?php echo $html['id'] ?>">发消息</a></dd>
+			<dd class="friend"><a href="javascript:;" name="friend" title="<?php echo $html['id'] ?>">加好友</a></dd>
+			<dd class="guset"><a href="javascript:addFlower(<?php echo $html['id'] ?>)" name="flower">送　花</a></dd>
+			<dd class="flower">写留言</dd>
 		</dl>
 		<?php 
 		}
