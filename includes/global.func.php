@@ -54,7 +54,7 @@ function _paging($sql, $size) {
 	global $page,$num,$pageabsolute,$pagesize,$pagenum,$link;
 	if(isset($_GET['page'])) {
 		$page = $_GET['page'];
-		if(empty($page) || $page < 0 || !is_numeric($page)) {
+		if(empty($page) || $page <= 0 || !is_numeric($page)) {
 			$page = 1;
 		}else{
 			$page = intval($page);
@@ -79,15 +79,15 @@ function _paging($sql, $size) {
 //分页函数
 function _page($type,$content='个会员') {
 	//这里如果不声明全局变量的话，该函数将无法获得$page,$pageabsolute,$num的值(可以用传递参数的办法，但是比较麻烦)
-	global $page,$pageabsolute,$num;
+	global $page,$pageabsolute,$num,$id;
 	if($type == 1){
 		echo '<div class="page">';
 		echo '<ul>'; 
 			for($i=0;$i<$pageabsolute;$i++) {
 				if($page == ($i+1)){
-					echo '<li><a href="'.SCRIPT.'.php?page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
+					echo '<li><a href="'.SCRIPT.'.php?'.$id.'page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
 				}else{
-					echo '<li><a href="'.SCRIPT.'.php?page='.($i+1).'">'.($i+1).'</a></li>';
+					echo '<li><a href="'.SCRIPT.'.php?'.$id.'page='.($i+1).'">'.($i+1).'</a></li>';
 				}
 			}
 		echo '</ul>';
@@ -102,14 +102,14 @@ function _page($type,$content='个会员') {
 						echo '<li> 上一页 |</li>';
 					}else{
 						echo '<li><a href="'.SCRIPT.'.php"> 首页 </a>|</li>';
-						echo '<li><a href="'.SCRIPT.'.php?page='.($page-1).'"> 上一页 </a>|</li>';
+						echo '<li><a href="'.SCRIPT.'.php?'.$id.'page='.($page-1).'"> 上一页 </a>|</li>';
 					}
 					if($page == $pageabsolute) {
 						echo '<li> 下一页 |</li>';
 						echo '<li> 尾页 |</li>';
 					}else{
-						echo '<li><a href="'.SCRIPT.'.php?page='.($page+1).'"> 下一页 </a>|</li>';
-						echo '<li><a href="'.SCRIPT.'.php?page='.$pageabsolute.'"> 尾页 </a>|</li>';
+						echo '<li><a href="'.SCRIPT.'.php?'.$id.'page='.($page+1).'"> 下一页 </a>|</li>';
+						echo '<li><a href="'.SCRIPT.'.php?'.$id.'page='.$pageabsolute.'"> 尾页 </a>|</li>';
 					}	
 		echo '</ul>';
 		echo '</div>';

@@ -1,0 +1,37 @@
+.add{
+	width: auto;
+	height: 600px;
+	border: 2px solid #ccc;
+}
+.add h2{
+	text-indent: 0;
+	text-align: center;
+}
+.add dl{
+	width:450px;
+	margin: 0 auto;
+}
+.add dl dt{
+	text-align: center;
+	padding: 10px 0;
+	font-weight: bold;
+}
+.add dl dd{
+	padding: 5px 0;
+}
+.add dl dd textarea{
+	width: 420px;
+	border: 1px solid #ccc;
+	height: 200px;
+}
+.code{cursor: pointer;}
+
+.add dl dd input[type="submit"]{
+	width: 60px;
+	height: 25px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+}

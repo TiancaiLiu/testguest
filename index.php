@@ -6,6 +6,9 @@ $link = connect();
 //读取xml(该方法写在核心函数库中)
 $html = _html(_get_xml('new.xml'));
 //print_r($html);
+//分页显示
+_paging("SELECT COUNT(*) FROM `tg_article`",9);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -35,6 +38,25 @@ $html = _html(_get_xml('new.xml'));
 <?php require ROOT_PATH.'includes/header.inc.php' ?>
 	<div class="list">
 		<h2>帖子列表</h2>
+		<a href="addblog.php" class="add">发帖</a>
+		<ul class="article">
+			<?php  
+				$query = "SELECT * FROM `tg_article` WHERE reid=0 ORDER BY tg_date LIMIT $pagenum,$pagesize";
+				$result = execute($link,$query);
+				while ($data = mysqli_fetch_assoc($result)) {
+					$htmllist = array();
+					$htmllist['id'] = $data['id'];
+					$htmllist['title'] = $data['tg_title'];
+					$htmllist['readcount'] = $data['tg_readcount'];
+					$htmllist['commendcount'] = $data['tg_commendcount'];
+			?>
+			<li class="btn<?php echo $htmllist['id']?>"><em>阅读数(<strong><?php echo $htmllist['readcount'] ?></strong>)评论数(<strong><?php echo $htmllist['commendcount'] ?></strong>)</em><a href="article.php?id=<?php echo $htmllist['id'] ?>"><?php echo $htmllist['title'] ?></a></li>
+			<?php 
+				}
+				mysqli_free_result($result);// 销毁结果集，释放结果内存 
+			?>
+		</ul>
+		<?php _page(2,'条帖子') ?>
 	</div>
 	<div class="user">
 		<h2>新进会员</h2>

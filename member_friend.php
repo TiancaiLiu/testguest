@@ -122,7 +122,7 @@ if(@$_GET['action'] == 'check' && isset($_GET['id'])) {
 					</tr>
 			</table>
 			</form>
-			<?php _page(2,'条短信');//分页风格 ?>
+			<?php _page(2,'条信息');//分页风格 ?>
 		</div>
 	</div>
 	<?php require ROOT_PATH.'includes/footer.inc.php' ?>
