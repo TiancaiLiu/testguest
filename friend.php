@@ -35,11 +35,9 @@ if(isset($_POST['submit'])) {
 			execute($link, $sql);
 			if(mysqli_affected_rows($link) == 1){
 				close($link);
-				session_destroy();
 				_alert_close('好友添加成功吗，请等待对方验证！');
 			}else{
 				close($link);
-				session_destroy();
 				_alert_back('添加失败！');
 			}
 		}
@@ -66,7 +64,6 @@ if(isset($_GET['id'])) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>加好友</title>
 	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/blog.js"></script>
 	<script type="text/javascript">

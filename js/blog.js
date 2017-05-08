@@ -1,7 +1,6 @@
 window.onload = function() {
 	var message = document.getElementsByName("message");
 	var friend = document.getElementsByName("friend");
-
 	for(var i=0;i<message.length;i++) {
 		message[i].onclick = function() {
 			centerWindow('message.php?id='+this.title,'message',300,500);

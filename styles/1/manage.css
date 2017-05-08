@@ -1,0 +1,14 @@
+.member .member_main dl{
+	width: 550px;
+	margin: 15px auto;
+	font-size: 14px;
+}
+.member .member_main dl dd{
+	padding: 8px 0;
+	border-bottom: 1px dashed #ff9d6f;
+}
+.imgstyle{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}

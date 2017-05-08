@@ -53,7 +53,6 @@ if(@$_GET['action'] == 'delete' && isset($_GET['id'])){
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>短信查阅</title>
 	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/message_detail.js"></script>
 	<script type="text/javascript">

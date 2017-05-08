@@ -11,7 +11,7 @@
 	border-radius: 10px 10px 0 0;
 }
 .article .subject{
-
+	min-height: 250px;
 }
 .article .subject dl{
 	width: 180px;
@@ -84,6 +84,14 @@
 .user span{
 	float: right;
 	color: #06f;
+	padding: 0 0 0 5px;
+}
+.user span a{
+	text-decoration: none;
+	color: #06f;
+}
+.user span a:hover{
+	color: #f60;
 }
 .user h3{
 	font-size: 14px;
@@ -131,4 +139,7 @@
 	color: #ff6700;
 	outline: none;
 	cursor: pointer;
+}
+.read p{
+	font-size: 12px;
 }

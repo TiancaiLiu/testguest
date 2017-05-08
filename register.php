@@ -6,6 +6,9 @@ require dirname(__FILE__).'/includes/common.inc.php';
 $link = connect();
 _login_state();//登录状态
 if(isset($_POST['submit'])) {
+	if($system['register'] == 0){
+		exit('非法注册！');
+	}
 	include_once ROOT_PATH.'includes/check_register.inc.php'; //引入验证函数库
 	_check_vcode($_POST['vcode'],$_SESSION['vcode']);//判断验证码
 	$clean = array();
@@ -48,9 +51,7 @@ $_SESSION['uniqid'] = $uniqid = _sha1_uniqid();//这段代码不能放到前面
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>注册</title>
-	<?php require ROOT_PATH.'includes/title.inc.php' ?>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/register.js"></script>
 	<script type="text/javascript">
 		function newgdcode(obj,url) {
@@ -62,6 +63,7 @@ $_SESSION['uniqid'] = $uniqid = _sha1_uniqid();//这段代码不能放到前面
 	<?php require ROOT_PATH.'includes/header.inc.php' ?>
 	<div class="register">
 		<h2>会员注册</h2>
+		<?php if($system['register'] == 1) { ?>
 		<form action="" method="post" name="register">
 			<input type="hidden" name="uniqid" value="<?php echo $uniqid?>" />
 			<ul>
@@ -115,6 +117,9 @@ $_SESSION['uniqid'] = $uniqid = _sha1_uniqid();//这段代码不能放到前面
 				<li><input type="submit" name="submit" value="注册" /></li>
 			</ul>
 		</form>
+		<?php }else{
+			echo '<h3 style="text-align:center;">管理员已经关闭注册！</h3>';
+			} ?>
 	</div>
 	<?php require ROOT_PATH.'includes/footer.inc.php' ?>
 </body>

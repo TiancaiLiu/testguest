@@ -19,25 +19,22 @@ if(isset($_POST['submit'])) {
 		$data = mysqli_fetch_assoc($result);
 		$sql = "UPDATE `tg_user` SET tg_last_time=now(),tg_last_ip='{$_SERVER['REMOTE_ADDR']}',tg_login_count=tg_login_count+1 WHERE tg_username='{$data['tg_username']}'";
 		execute($link,$sql);
-		//var_dump($data);
 		_setcookie($data['tg_username'],$data['tg_uniqid'],$clean['time']);
+		if($data['tg_level'] == 1){
+			$_SESSION['admin'] = $data['tg_username'];
+		}
 		close($link);
-		session_destroy();
 		_location(null,'member.php');
 	}else{
 		close($link);
-		session_destroy();
 		_location('用户名密码不正确或改账户未激活','login.php');
-	}
-	
-	
+	}	
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>登录</title>
 	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/login.js"></script>
 	<script type="text/javascript">

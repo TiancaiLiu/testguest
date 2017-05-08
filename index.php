@@ -1,4 +1,5 @@
-<?php  
+<?php 
+session_start();
 define("IN_TG", true);//定义一个常量，防止恶意调用includes里的内部文件
 require dirname(__FILE__).'/includes/common.inc.php'; //转换成硬路径，速度更快
 define("SCRIPT","index");//定义常量表示本页内容
@@ -7,14 +8,13 @@ $link = connect();
 $html = _html(_get_xml('new.xml'));
 //print_r($html);
 //分页显示
-_paging("SELECT COUNT(*) FROM `tg_article`",9);
+_paging("SELECT COUNT(*) FROM `tg_article` WHERE reid=0",$system['article']);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Document</title>
 	<?php require ROOT_PATH.'includes/title.inc.php' ?>
 	<script type="text/javascript" src="js/blog.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
@@ -45,12 +45,13 @@ _paging("SELECT COUNT(*) FROM `tg_article`",9);
 				$result = execute($link,$query);
 				while ($data = mysqli_fetch_assoc($result)) {
 					$htmllist = array();
+					$htmllist['type'] = $data['tg_type'];
 					$htmllist['id'] = $data['id'];
 					$htmllist['title'] = $data['tg_title'];
 					$htmllist['readcount'] = $data['tg_readcount'];
 					$htmllist['commendcount'] = $data['tg_commendcount'];
 			?>
-			<li class="btn<?php echo $htmllist['id']?>"><em>阅读数(<strong><?php echo $htmllist['readcount'] ?></strong>)评论数(<strong><?php echo $htmllist['commendcount'] ?></strong>)</em><a href="article.php?id=<?php echo $htmllist['id'] ?>"><?php echo $htmllist['title'] ?></a></li>
+			<li class="btn<?php echo $htmllist['type']?>"><em>阅读数(<strong><?php echo $htmllist['readcount'] ?></strong>)评论数(<strong><?php echo $htmllist['commendcount'] ?></strong>)</em><a href="article.php?id=<?php echo $htmllist['id'] ?>"><?php echo $htmllist['title'] ?></a></li>
 			<?php 
 				}
 				mysqli_free_result($result);// 销毁结果集，释放结果内存 

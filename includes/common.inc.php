@@ -15,4 +15,23 @@ define('GPC',"get_magic_quotes_gpc()");//定义自动转义常量
 if(PHP_VERSION < '5.1.0') {
 	exit('Version is too Low!');
 }
+$link = connect();
+//网站系统设置初始化
+$query = "SELECT * FROM `tg_system` WHERE id=1";
+$result = execute($link,$query);
+if(mysqli_num_rows($result) == 1){
+	$data = mysqli_fetch_assoc($result);
+	$system = array();
+	$system['webname'] = $data['tg_webname'];
+	$system['article'] = $data['tg_article'];
+	$system['blog'] = $data['tg_blog'];
+	$system['photo'] = $data['tg_photo'];
+	$system['skin'] = $data['tg_skin'];
+	$system['code'] = $data['tg_code'];
+	$system['register'] = $data['tg_register'];
+	$system['string'] = $data['tg_string'];
+	$system = _html($system);
+}else{
+	exit('系统表异常，请管理员检查');
+}
 ?>

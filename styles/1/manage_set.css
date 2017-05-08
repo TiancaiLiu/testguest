@@ -1,0 +1,29 @@
+.member .member_main dl{
+	width: 550px;
+	margin: 15px auto;
+	font-size: 14px;
+}
+.member .member_main dl dd{
+	padding: 8px 0;
+	border-bottom: 1px dashed #ff9d6f;
+}
+.imgstyle{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.member_main dl dd input[type="submit"]{
+	width: 100px;
+	height: 25px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+	margin: 0 0 0 220px;
+
+}
+.member_main dl dd input[type="text"]{
+	width: 180px;
+	height: 19px;
+}
