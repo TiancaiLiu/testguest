@@ -12,8 +12,8 @@ if(!defined("IN_TG")) {
 	</dl>
 	<dl>
 		<dt>会员管理</dt>
-		<dd><a href="member_list.php">会员列表</a></dd>
-		<dd><a href="member_job.php">职务设置</a></dd>
+		<dd><a href="member_list.php" <?php if(basename($_SERVER['SCRIPT_NAME'])=='member_list.php'){echo 'class="selected"';}?>>会员列表</a></dd>
+		<dd><a href="member_job.php" <?php if(basename($_SERVER['SCRIPT_NAME'])=='member_job.php'){echo 'class="selected"';}?>>职务设置</a></dd>
 		<dd><a href="#">个人相册</a></dd>
 	</dl>
 </div>

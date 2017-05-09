@@ -1,0 +1,57 @@
+.photo{
+	width: auto;
+	height: 500px;
+	border: 2px solid #ccc;
+}
+.photo h2{
+	text-indent: 0;
+	text-align: center;
+}
+.photo p {
+	text-align: center;
+	padding: 20px;
+	clear: both;
+}
+.photo p a{
+	font-size: 14px;
+	color: #333;
+	text-decoration: none;
+	background: url('../../images/figer.png') no-repeat left center;
+	padding: 0 0 0 20px;
+}
+.photo p a:hover{
+	color: #f60;
+	text-decoration: underline;
+}
+.photo dl{
+	width: 150px;
+	height: 180px;
+	margin: 20px;
+	float: left;
+}
+.photo dl dt{
+	width: 94px;
+	height: 94px;
+	background: url('../../images/photo.png') no-repeat;
+	margin: 0 auto;
+}
+.photo dl dt img{
+	display: block;
+	padding: 28px 0 0 29px;
+	border: none;
+}
+.photo dl dd{
+	font-size: 12px;
+	width: 90px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 2px;
+}
+.photo dl dd a{
+	text-decoration: none;
+	color: #333;
+}
+.photo dl dd a:hover{
+	color: #f60;
+	text-decoration: underline;
+}

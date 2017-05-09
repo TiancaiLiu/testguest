@@ -13,7 +13,7 @@ if(isset($_POST['submit'])) {
 	$clean['password'] = _check_password($_POST['password'],6);
 	$clean['time'] = _check_time($_POST['time']);
 	//var_dump($clean);
-	$query = "SELECT * FROM `tg_user` WHERE tg_username='{$clean['username']}' AND tg_password='{$clean['password']}' AND tg_active='' LIMIT 1";
+	$query = "SELECT tg_username,tg_password,tg_uniqid,tg_level,tg_active FROM `tg_user` WHERE tg_username='{$clean['username']}' AND tg_password='{$clean['password']}' AND tg_active='' LIMIT 1";
 	$result = execute($link, $query);
 	if(mysqli_num_rows($result)==1) {
 		$data = mysqli_fetch_assoc($result);

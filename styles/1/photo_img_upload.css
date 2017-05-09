@@ -1,0 +1,47 @@
+.photo{
+	width: auto;
+	height: 500px;
+	border: 2px solid #ccc;
+}
+.photo h2{
+	text-indent: 0;
+	text-align: center;
+}
+.photo dl{
+	width: 280px;
+	margin: 20px auto;
+}
+.photo dl dd{
+	padding: 5px 0;
+}
+.photo dl dd a{
+	text-decoration: none;
+	color: #333;
+}
+.photo dl dd a:hover{
+	color: #f60;
+	text-decoration: underline;
+}
+.photo dl dd input[type="text"],input[type="password"]{
+	border: 1px solid #333;
+	width: 180px;
+	height: 20px;
+}
+#pass{
+	display: none;
+}
+.photo dl dd textarea{
+	border: 1px solid #333;
+	width: 180px;
+	height: 70px;
+}
+.photo dl dd input[type="submit"]{
+	width: 60px;
+	height: 25px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+	margin: 0 0 0 120px;
+}

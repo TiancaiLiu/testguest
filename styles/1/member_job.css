@@ -1,0 +1,33 @@
+.member .member_main table{
+	width: 90%;
+	margin: 10px auto;
+	text-align: center;
+	background: #ccc;
+}
+.member .member_main table th,.member .member_main table td{
+	height: 25px;
+	line-height: 25px;
+	background: #fff;
+}
+.member .member_main table td a{
+	text-decoration: none;
+	color: #333;
+}
+.member .member_main table td a:hover{
+	text-decoration: underline;
+	color: #f60;
+}
+.member .member_main form{
+	text-align: center;
+	padding: 10px;
+}
+.member .member_main form input[type="submit"]{
+	width: 80px;
+	height: 20px;
+	border: 1px solid #ff6700;
+	background:#fff;
+	color: #ff6700;
+	outline: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
